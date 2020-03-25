@@ -1,0 +1,8 @@
+---
+- hosts: all
+  vars_prompt:
+    - name: "secret_name"
+      prompt: "enter a test"
+
+  roles:
+    - dbgprint

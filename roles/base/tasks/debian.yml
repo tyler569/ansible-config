@@ -1,0 +1,19 @@
+- name: install common apt packages
+  apt:
+    name:
+      - vim
+      - sudo
+      - htop
+      - bash
+    state: present
+
+- name: create my user
+  user:
+    name: tyler
+    groups:
+      - admin
+      - sudo
+    password: "{{ user_password }}"
+    state: present
+    shell: "/bin/bash"
+

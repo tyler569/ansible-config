@@ -1,0 +1,20 @@
+
+roles:
+  base
+    - packages
+      - vim
+      - bash
+
+    - my user
+        - vimrc
+        - bash profile
+        - keys
+        - sudo/group state
+
+    - whatever other config
+
+  router
+  vpn
+
+  whatever else I run
+

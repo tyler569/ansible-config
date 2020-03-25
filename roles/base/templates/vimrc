@@ -1,0 +1,117 @@
+
+set nocompatible    " Because what's even the point without this?
+set encoding=utf-8  " It's two thousand $year !
+set hidden          " Allow hidden buffers - something required this
+ 
+ 
+syntax on
+filetype plugin indent on
+ 
+" 256 colors and colorscheme
+if $TERM =~ "256color"
+    set t_Co=256
+endif
+" colorscheme peachpuff
+colorscheme elflord
+ 
+" We have the tehnology for italics
+if $TERM =~ "italic"
+    highlight Comment cterm=italic
+endif
+ 
+" Tell terminal my name
+set titlestring=vim\ %{expand(\"%t\")}
+ 
+" Indentation rules
+set expandtab               " Tabs -> spaces
+set softtabstop=4           " Tabs -> spaces gooder
+set tabstop=4               " Show tabs as 4 spaces
+set shiftwidth=4            " Reident 4 spaces
+"set cindent                 " C indentation rules
+"set cinoptions=:0,g0        " Move 'public:' etc. to the left
+set cinoptions+=l1          " case FOOBAR: {  sanity
+set smartindent
+set modeline                " Lemme change it per file
+
+autocmd Filetype ruby set tabstop=2
+autocmd Filetype ruby set softtabstop=2
+autocmd Filetype ruby set shiftwidth=2
+autocmd Filetype eruby set tabstop=2
+autocmd Filetype eruby set softtabstop=2
+autocmd Filetype eruby set shiftwidth=2
+autocmd Filetype yaml set tabstop=2
+autocmd Filetype yaml set softtabstop=2
+autocmd Filetype yaml set shiftwidth=2
+
+autocmd Filetype go set tabstop=4
+autocmd Filetype go set softtabstop=4
+autocmd Filetype go set shiftwidth=4
+autocmd Filetype go set noexpandtab
+
+autocmd BufRead,BufNewFile *.a68 set filetype=algol68
+autocmd BufRead,BufNewFile *.h set filetype=c
+autocmd BufRead,BufNewFile *.zig set filetype=zig
+autocmd BufRead,BufNewFile *.nim set filetype=nim
+
+autocmd Filetype strace set colorcolumn=0
+
+" Backup to ~/.vim
+set backupdir=~/.vim/backup " Backups over there
+set backup
+set directory=~/.vim/swap   " Swapfiles over there
+set writebackup             " Do actually do backups
+set undodir=~/.vim/undo     " Persistent undo
+set undofile                " See above
+ 
+" UI
+set number                  " Line numbers ...
+highlight LineNr ctermfg=darkgrey
+                            " ... in a better color
+set colorcolumn=80          " 80 colum best column
+highlight ColorColumn ctermbg=darkred
+set numberwidth=3           " Start linenumbers at 3 digits
+"set relativenumber          " Line numbers relative to current location
+"set laststatus=2            " Status line for file names
+set backspace=2             " Make backspace work
+set showcmd                 " Show incomplete commands
+set wildmenu                " Menu for command mode
+set lazyredraw              " Don't redraw the screen in macros etc.
+set showmatch               " Highlight matching [{()}]
+set display=lastline,uhex   " Show the last line even if it is too long
+set novisualbell            " I don't do bell sounds
+set scrolloff=2             " Show 2 lines of context
+"set listchars=tab:→\ ,trail:▸
+"set list                    " Show hidden undesirable characters
+ 
+" Searching
+set incsearch               " Search as you type
+set hlsearch                " Highlight all matches
+set ignorecase              " Ignore case on searching ...
+set smartcase               " ... unless I use a capital
+ 
+" Folding
+set foldmethod=indent       " Fold on indentation - should always be right (enough)
+set foldnestmax=3           " Don't fold too deep though
+set nofoldenable            " And not by default plx
+ 
+ 
+" I hate typing - these make it (slightly) less painful
+nnoremap q:     :q
+nnoremap :Q     :q
+nnoremap :W     :w
+ 
+let mapleader=","
+ 
+nnoremap <leader><space>    :nohlsearch<CR>
+
+nnoremap <C-N> :tabnext<CR>
+
+inoremap <C-B> <Nop>
+vnoremap <C-B> <Nop>
+nnoremap <C-B> <Nop>
+
+let g:go_highlight_trailing_whitespace_error=0
+
+set secure
+set exrc
+
